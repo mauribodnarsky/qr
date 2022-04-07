@@ -1,0 +1,224 @@
+
+<div class="row" >
+  <div class="col-4 offset-4" >
+    <p class="h2 text-white bg-dark text-center">PIVOBAR</p>  
+  </div>
+    </div>
+    <div class="row" *ngIf="this.creado===1" id="contenido"   style="border-radius: 20px; background: rgb(34, 34, 34)">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-4 offset-4 text-center">
+            <img src="../assets/img/vikingo.png" class=" mt-2" height="120px" >
+
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row">
+      <div class="col-4 offset-1  "  >
+        <qr-code value = "{{this.data}}"  style="display: inline-block; margin-bottom: 60px;"
+        size = "400" 
+        darkColor="#000000"
+        errorCorrectionLevel = "M" 
+        centerImageSrc = "undefined" 
+        centerImageSize = "undefined" 
+        > 
+</qr-code>
+
+      </div>
+      <div class="col-7 ">
+        <div class="row my-4">
+          <div class="col-10 offset-1">
+            <h3 class="h1 d-block " style="color:#d6c052;font-weight: bold;font-family: 'Roboto', sans-serif;">PIVOBAR PATIO CERVECERO</h3>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-10 offset-1">
+            <h3 class="h4 d-block " style="color:#f7d634;font-weight: bold;font-family: 'Roboto', sans-serif;">{{this.objtarjeta.nombre}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10 offset-1 mt-1">
+            <h3 class="h5 d-block" style="color:#f7d634;font-weight: bold;font-family: 'Roboto', sans-serif;">{{  this.objtarjeta.numero}}</h3>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-4 offset-4 text-center">
+            <img src="../assets/img/logognuino.png" style="float: center;" class=" my-1 mr-1" height="60px" >
+
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-4 offset-4 text-center">
+            <p  style="color: #ff810a;">gnuino.com.ar</p>
+
+          </div>
+        </div>
+      </div>
+     
+      </div>
+    
+    <div class="row">
+      <div class="col-6 offset-3">
+        <div class="row my-2">
+          <div class="col-12">
+            <button class="btn btn-lg btn-outline-primary w-100"  data-bs-toggle="modal" data-bs-target="#ver">TABLA</button>
+
+
+          </div>
+        </div>  
+        
+         <div class="row">
+           <div class="col-12">
+            <button type="button" *ngIf="this.creado===1" class="btn btn-primary mt-3 mb-5 w-100" (click)="crearImagen()">CREAR TARJETA</button>
+
+
+           </div>
+         </div>  
+         <div class="row my-2">
+          <div class="col-12">
+            <button class="btn btn-lg btn-outline-primary w-100" (click)="escanear()"  *ngIf="this.creado===0" data-bs-toggle="modal" data-bs-target="#exampleModal">ESCANEAR</button>
+
+
+          </div>
+        </div>  
+        <div class="row">
+          <div class="col-12">
+            <button class="btn btn-lg btn-outline-primary w-100"  *ngIf="this.creado===0"  data-bs-toggle="modal" data-bs-target="#nuevocliente">NUEVO CLIENTE</button>
+
+
+          </div>
+        </div>
+      <div class="row">
+      <div class="col-12">   
+<ng-container *ngIf="imagenCreada === true;">
+  <div  align="center">
+
+     <!-- Imagen Creada -->
+     <img class="w-100" src={{img}}>
+
+     <!-- Botón para descargar la imagen creada -->
+     <a type="button" class="btn btn-success mt-3 w-100" href="{{img}}" download>	
+     Descargar
+     </a>
+
+  </div>
+</ng-container> 
+     </div></div>   
+<h1 *ngIf="this.resultado!=''">RESULTADO: {{this.resultado}}</h1>
+   
+
+
+      </div>
+    </div>
+    <div class="modal fade"   id="ver" tabindex="-1" aria-labelledby="ver" aria-hidden="true">
+
+      <div class="modal-dialog  modal-xl modal-sm modal-lg">
+        <div class="modal-content">
+          <div class="modal-header text-center" style="background-color: #1a472a; color: white;opacity: 0.7; ">
+           <h5  class="modal-title " id="ver">LISTA CLIENTES</h5>
+            <button type="button" class="btn-close" style="background-color:white !important;" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>      
+          <div class="modal-body" style="background-color: #f6f3f3;">
+            <div class="row">
+              <div class="col-10 offset-1">
+                <table class="table table-dark  ">
+                  <thead>
+                  <tr>
+                    <th class="text-center">CLIENTE</th>
+                    <th class="text-center">PUNTOS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let client of this.clientes">
+                    <td class="text-center">{{client.nombre }}</td> 
+                    <td class="text-center">{{client.puntos}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+              </div>
+            </div>
+            </div>
+            </div>
+
+      <!-- Modal -->
+      <div class="modal fade"   id="nuevocliente" tabindex="-1" aria-labelledby="nuevocliente" aria-hidden="true">
+
+        <div class="modal-dialog  modal-xl modal-sm modal-lg">
+          <div class="modal-content">
+            <div class="modal-header text-center" style="background-color: #1a472a; color: white;opacity: 0.7; ">
+             <h5  class="modal-title " id="nuevocliente">NUEVO CLIENTE</h5>
+              <button type="button" class="btn-close" style="background-color:white !important;" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>      
+            <div class="modal-body" style="background-color: #f6f3f3;">
+              <div class="row">
+                <div class="col-8 offset-2">
+                  <form #FormTarjeta="ngForm" (ngSubmit)="guardarcliente(FormTarjeta)" class="form-group" >
+            	
+                    <div class="row">
+                      <div class="col-3 d-flex justify-content-end align-items-center">
+                        <label class="form-control-label">Nombre</label>
+      
+                      </div>
+                      <div class="col-7">
+                        <input type="text" #nombre="ngModel" class="w-100 form-control"  [(ngModel)]="objtarjeta.nombre"   name="nombre" required style="float:center;">	
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3 d-flex justify-content-end align-items-center">
+                        <label class="form-control-label">DNI</label>
+                      </div>
+                      <div class="col-7">
+                        <input type="text" #numero="ngModel" class="form-control"  [(ngModel)]="objtarjeta.dni"  name="numero" required style="float:center;">
+                      </div>
+                    </div>
+      
+  
+                <div class="row">
+                  <div class="col-4 offset-6 d-flex justify-content-end align-items-center">
+                    <input type="submit" class="btn btn-success" name="">
+                    
+                  </div>
+                </div>
+                    </form>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+     <!-- Modal -->
+     <div class="modal fade"   id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+      <div class="modal-dialog  modal-xl modal-sm modal-lg">
+        <div class="modal-content">
+          <div class="modal-header text-center" style="background-color: #1a472a; color: white;opacity: 0.7; ">
+           <h5  class="modal-title " id="exampleModalLabel">ESCANEANDO</h5>
+            <button type="button" class="btn-close" style="background-color:white !important;" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>      
+          <div class="modal-body" style="background-color: #f6f3f3;">
+            <div class="row">
+              <div class="col-4 offset-4">
+                  <qr-scanner
+                    [debug]="false"
+                    [canvasWidth]="1080"
+                    [canvasHeight]="720"
+                    [stopAfterScan]="true"
+                    [updateTime]="500"> 
+                  </qr-scanner>    
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>

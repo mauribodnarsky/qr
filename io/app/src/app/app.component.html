@@ -1,0 +1,22 @@
+<ion-app>
+  <ion-header>
+    <ion-navbar>
+           <ion-title> Escanea el código QR </ion-title>
+    </ion-navbar>
+  </ion-header>
+   
+  <ion-content [ngClass]="{'qrscanner':isShow}">
+    <div class="area"></div>
+    <div class="line"></div>
+  </ion-content>
+   
+  <ion-footer>
+    <div class="warp-icon" tappable (click)="close()">
+      <img src="../../../assets/imgs/qrscanner/close.svg" alt="">
+           <span> Cancelar </span>
+    </div>
+    <div class="warp-icon" tappable (click)="toggleLight()">
+      <img src="../../../assets/imgs/qrscanner/flashlight.svg" alt="">
+           <span> Linterna </span>
+    </div>
+  </ion-footer></ion-app>
